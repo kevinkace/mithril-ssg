@@ -19,6 +19,12 @@
     "eslint-config-arenanet": "^4.4.1"
   },
   "eslintConfig": {
-    "extends": "arenanet"
+    "extends": "arenanet",
+    "env": {
+      "node": true
+    }
+  },
+  "bin": {
+    "mithril-ssg": "./index.js"
   }
 }

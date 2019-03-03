@@ -1,11 +1,16 @@
-const util     = require("util");
-const readFile = util.promisify(require("fs").readFile)
+const { resolve } = require("path");
+
+const log = require("./log");
 
 module.exports = function readFiles(filePaths) {
-    return Promise.all(filePaths.map(filePath =>
-        Promise.resolve({
+    log("found files", filePaths);
+
+    return Promise.all(filePaths.map(filePath => {
+        log("reading", filePath);
+
+        return Promise.resolve({
             filePath,
-            content : require(filePath)
-        })
-    ));
+            content : require(resolve(filePath))
+        });
+    }));
 };

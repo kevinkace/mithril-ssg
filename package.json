@@ -12,7 +12,8 @@
   "dependencies": {
     "globby": "^9.0.0",
     "mithril": "^1.1.6",
-    "mithril-node-render": "^2.3.1"
+    "mithril-node-render": "^2.3.1",
+    "rmfr": "^2.0.0"
   },
   "devDependencies": {
     "eslint": "^5.14.1",
@@ -22,6 +23,9 @@
     "extends": "arenanet",
     "env": {
       "node": true
+    },
+    "rules": {
+      "no-console": "off"
     }
   },
   "bin": {

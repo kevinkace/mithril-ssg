@@ -27,5 +27,8 @@
     "rules": {
       "no-console": "off"
     }
+  },
+  "bin": {
+    "mithril-ssg": "./index.js"
   }
 }

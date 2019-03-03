@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const globby = require("globby");
 
 const readFiles  = require("./readFiles");

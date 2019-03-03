@@ -23,6 +23,6 @@ module.exports = async function writeFiles(files) {
 
         log("writing", dest);
 
-        return writeFile(dest, file.rendered, "utf8");
+        return writeFile(dest, "<!doctype html>\n".concat(file.rendered), "utf8");
     }));
 };

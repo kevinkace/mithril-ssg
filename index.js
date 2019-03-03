@@ -1,14 +1,14 @@
-#!/usr/bin/env node
-
 const globby = require("globby");
 
-const readFiles  = require("./readFiles");
-const render     = require("./render");
-const writeFiles = require("./writeFiles");
-const handleErrs = require("./handleErrs");
+const readFiles  = require("./lib/readFiles");
+const render     = require("./lib/render");
+const writeFiles = require("./lib/writeFiles");
+const handleErrs = require("./lib/handleErrs");
 
-globby("./src/pages/**/*.js")
-    .then(readFiles)
-    .then(render)
-    .then(writeFiles)
-    .catch(handleErrs);
+module.exports = function mithrilSsg(glob = "./src/pages/**/*.js") {
+    return globby(glob)
+        .then(readFiles)
+        .then(render)
+        .then(writeFiles)
+        .catch(handleErrs);
+};

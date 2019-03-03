@@ -29,6 +29,6 @@
     }
   },
   "bin": {
-    "mithril-ssg": "./index.js"
+    "mithril-ssg": "cli.js"
   }
 }

@@ -24,8 +24,8 @@ async function html(glob = "./src/pages/**/*.js") {
 
 async function assets(glob = "./src/assets/**/*.*") {
     return globby(glob)
-        .then(readFiles)
-        .then(console.log);
+        .then(copyFiles)
+        .catch(handleErrs);
 }
 
 module.exports = async function mithrilSsg() {

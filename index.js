@@ -7,6 +7,7 @@ const rmfr   = require("rmfr");
 const globby = require("globby");
 
 const log        = require("./lib/log");
+const copyFiles  = require("./lib/copyFiles");
 const readFiles  = require("./lib/readFiles");
 const render     = require("./lib/render");
 const writeFiles = require("./lib/writeFiles");

@@ -1,7 +1,7 @@
-const util               = require("util");
+const { promisify }      = require("util");
 const { mkdir : _mkdir } = require("fs");
 
-const mkdir = util.promisify(_mkdir);
+const mkdir = promisify(_mkdir);
 
 const rmfr   = require("rmfr");
 const globby = require("globby");
@@ -12,15 +12,30 @@ const render     = require("./lib/render");
 const writeFiles = require("./lib/writeFiles");
 const handleErrs = require("./lib/handleErrs");
 
-module.exports = async function mithrilSsg(glob = "./src/pages/**/*.js") {
-    log("deleting", "/dist");
+const dist = "./dist";
 
-    await rmfr("./dist");
-    await mkdir("./dist");
-
+async function html(glob = "./src/pages/**/*.js") {
     return globby(glob)
         .then(readFiles)
         .then(render)
         .then(writeFiles)
         .catch(handleErrs);
+}
+
+async function assets(glob = "./src/assets/**/*.*") {
+    return globby(glob)
+        .then(readFiles)
+        .then(console.log);
+}
+
+module.exports = async function mithrilSsg() {
+    log("deleting", dist);
+
+    await rmfr(dist);
+    await mkdir(dist);
+
+    return Promise.all([
+        html(),
+        assets()
+    ]);
 };

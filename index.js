@@ -13,6 +13,8 @@ const render     = require("./lib/render");
 const writeFiles = require("./lib/writeFiles");
 const handleErrs = require("./lib/handleErrs");
 
+const state = require("./state");
+
 const dist = "./dist";
 
 async function html(glob = "./src/pages/**/*.js") {
@@ -29,8 +31,17 @@ async function assets(glob = "./src/assets/**/*.*") {
         .catch(handleErrs);
 }
 
-module.exports = async function mithrilSsg() {
+async function minify() {
+    return Promise.all([
+        minifyHtml(),
+        minifyCss()
+    ]);
+}
+
+module.exports = async function mithrilSsg({ production }) {
     log("deleting", dist);
+
+    state.production = production;
 
     await rmfr(dist);
     await mkdir(dist);
@@ -38,5 +49,6 @@ module.exports = async function mithrilSsg() {
     return Promise.all([
         html(),
         assets()
-    ]);
+    ])
+    .then(() => (production ? minify() : null));
 };

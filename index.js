@@ -13,6 +13,9 @@ const render     = require("./lib/render");
 const writeFiles = require("./lib/writeFiles");
 const handleErrs = require("./lib/handleErrs");
 
+const minifyHtml = require("./lib/minifyHtml");
+const minifyCss  = require("./lib/minifyCss");
+
 const state = require("./state");
 
 const dist = "./dist";

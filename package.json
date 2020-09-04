@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "globby": "^9.0.0",
-    "mithril": "^1.1.6",
+    "mithril": "^1.1.7",
     "mithril-node-render": "^2.3.1",
     "rmfr": "^2.0.0"
   },
